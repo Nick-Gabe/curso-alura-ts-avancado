@@ -1,10 +1,10 @@
 export var DiasDaSemana;
 (function (DiasDaSemana) {
-    DiasDaSemana[DiasDaSemana["domingo"] = 0] = "domingo";
-    DiasDaSemana[DiasDaSemana["segunda"] = 1] = "segunda";
-    DiasDaSemana[DiasDaSemana["terca"] = 2] = "terca";
-    DiasDaSemana[DiasDaSemana["quarta"] = 3] = "quarta";
-    DiasDaSemana[DiasDaSemana["quinta"] = 4] = "quinta";
-    DiasDaSemana[DiasDaSemana["sexta"] = 5] = "sexta";
-    DiasDaSemana[DiasDaSemana["sabado"] = 6] = "sabado";
+    DiasDaSemana[DiasDaSemana["DOMINGO"] = 0] = "DOMINGO";
+    DiasDaSemana[DiasDaSemana["SEGUNDA"] = 1] = "SEGUNDA";
+    DiasDaSemana[DiasDaSemana["TERCA"] = 2] = "TERCA";
+    DiasDaSemana[DiasDaSemana["QUARTA"] = 3] = "QUARTA";
+    DiasDaSemana[DiasDaSemana["QUINTA"] = 4] = "QUINTA";
+    DiasDaSemana[DiasDaSemana["SEXTA"] = 5] = "SEXTA";
+    DiasDaSemana[DiasDaSemana["SABADO"] = 6] = "SABADO";
 })(DiasDaSemana || (DiasDaSemana = {}));

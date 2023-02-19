@@ -57,6 +57,6 @@ export class NegociacaoController {
     }
     dataDiaUtil(data) {
         const day = data.getDay();
-        return day > DiasDaSemana.domingo && day < DiasDaSemana.sabado;
+        return day > DiasDaSemana.DOMINGO && day < DiasDaSemana.SABADO;
     }
 }
