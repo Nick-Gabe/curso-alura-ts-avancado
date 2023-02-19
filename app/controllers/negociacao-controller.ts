@@ -21,6 +21,8 @@ export class NegociacaoController {
 
   public adiciona(): void {
     const negociacao = this.criaNegociacao();
+    if (!negociacao) return;
+
     this.negociacoes.adiciona(negociacao);
     this.limparFormulario();
     this.atualizarView();
@@ -30,7 +32,18 @@ export class NegociacaoController {
     const date = this.inputData.valueAsDate;
     const quantidade = this.inputQuantidade.valueAsNumber;
     const valor = this.inputValor.valueAsNumber;
-    return new Negociacao(date, quantidade, valor);
+
+    try {
+      this.validaFormulario(date, quantidade, valor);
+      return new Negociacao(date, quantidade, valor);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        this.mensagemView.update({
+          tipo: "danger",
+          mensagem: err.message,
+        });
+      }
+    }
   }
 
   private limparFormulario(): void {
@@ -42,6 +55,22 @@ export class NegociacaoController {
 
   private atualizarView() {
     this.negociacoesView.update(this.negociacoes);
-    this.mensagemView.update(`Negociação adicionada com sucesso`);
+    this.mensagemView.update({
+      tipo: "success",
+      mensagem: `Negociação adicionada com sucesso`,
+    });
+  }
+
+  private validaFormulario(
+    data: Date,
+    quantidade: number,
+    valor: number
+  ): void {
+    if (!this.dataDiaUtil(data))
+      throw new Error("A data precisa ser um dia útil");
+  }
+
+  private dataDiaUtil(data: Date): boolean {
+    return data.getDay() < 5;
   }
 }
