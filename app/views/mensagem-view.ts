@@ -8,7 +8,7 @@ type MensagemInput = {
 
 export class MensagemView extends View<MensagemInput> {
   constructor(selector: string) {
-    super(selector, (elemento) => {
+    super(selector, true, (elemento) => {
       setTimeout(() => {
         elemento.innerHTML = "";
       }, 3000);

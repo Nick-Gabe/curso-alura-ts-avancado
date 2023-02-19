@@ -4,13 +4,19 @@ export abstract class View<T> {
 
   constructor(
     selector: string,
+    private sanitize = false,
     private callback?: (elemento: HTMLElement) => void
   ) {
     this.elemento = document.querySelector(selector);
   }
 
   update(model: T): void {
-    const template = this.template(model);
+    let template = this.template(model);
+
+    if (this.sanitize) {
+      template = template.replace(/<script.*>.*<\/script>/g, "");
+    }
+
     this.elemento.innerHTML = template;
     this.callback?.(this.elemento);
   }
