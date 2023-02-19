@@ -1,5 +1,6 @@
 import { Negociacao } from "../models/negociacao.js";
 import { Negociacoes } from "../models/negociacoes.js";
+import { BootstrapAlerts, DiasDaSemana } from "../types/enums/index.js";
 import { MensagemView } from "../views/mensagem-view.js";
 import { NegociacoesView } from "../views/negociacoes-view.js";
 export class NegociacaoController {
@@ -31,7 +32,7 @@ export class NegociacaoController {
         catch (err) {
             if (err instanceof Error) {
                 this.mensagemView.update({
-                    tipo: "danger",
+                    tipo: BootstrapAlerts.danger,
                     mensagem: err.message,
                 });
             }
@@ -46,7 +47,7 @@ export class NegociacaoController {
     atualizarView() {
         this.negociacoesView.update(this.negociacoes);
         this.mensagemView.update({
-            tipo: "success",
+            tipo: BootstrapAlerts.success,
             mensagem: `Negociação adicionada com sucesso`,
         });
     }
@@ -55,6 +56,7 @@ export class NegociacaoController {
             throw new Error("A data precisa ser um dia útil");
     }
     dataDiaUtil(data) {
-        return data.getDay() < 5;
+        const day = data.getDay();
+        return day > DiasDaSemana.domingo && day < DiasDaSemana.sabado;
     }
 }

@@ -1,14 +1,5 @@
 import { View } from "./view.js";
-
-type BootstrapAlerts =
-  | "primary"
-  | "secondary"
-  | "success"
-  | "danger"
-  | "warning"
-  | "info"
-  | "light"
-  | "dark";
+import { BootstrapAlerts } from "../types/enums/index.js";
 
 type MensagemInput = {
   tipo?: BootstrapAlerts;
@@ -26,7 +17,7 @@ export class MensagemView extends View<MensagemInput> {
 
   protected template(model: MensagemInput): string {
     return `
-      <p class="alert alert-${model.tipo || "primary"}">
+      <p class="alert ${model.tipo || "alert-primary"}">
         ${model.mensagem}
       </p>
     `;

@@ -9,7 +9,7 @@ export class MensagemView extends View {
     }
     template(model) {
         return `
-      <p class="alert alert-${model.tipo || "primary"}">
+      <p class="alert ${model.tipo || "alert-primary"}">
         ${model.mensagem}
       </p>
     `;
